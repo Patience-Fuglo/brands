@@ -3,7 +3,9 @@ const router = require('express').Router();
 const Brand = require('../models/brand');
 
 router.get('/', (req, res) => {
-    res.send(Brand);
+    res.render('index', { 
+        brands: Brand 
+    });
 });
 
 router.get('/:arrayIndex', (req, res) => {
