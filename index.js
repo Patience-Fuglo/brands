@@ -1,16 +1,18 @@
 const express = require('express');
 require('dotenv').config();
 
-const brandRoutes = require('./controllers/brand');
+const breadRoutes = require('./controllers/bread');
 
 const app = express();
 
 //Middleware
+app.use(express.urlencoded({ extended: true }));
+app.use(express.static('public'));
 app.set('views', __dirname + '/views')
 app.set('view engine', 'jsx')
 app.engine('jsx', require('express-react-views').createEngine())
 
-app.use('/brands', brandRoutes);
+app.use('/breads', breadRoutes);
 
 const PORT = process.env.PORT;
 
