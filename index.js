@@ -1,9 +1,10 @@
 const express = require("express");
+const mongoose = require("mongoose");
 const methodOverride = require("method-override");
 require("dotenv").config();
-const mongoose = require("mongoose");
 
 const breadRoutes = require("./controllers/bread");
+const bakerRoutes = require("./controllers/baker");
 
 const app = express();
 
@@ -17,6 +18,7 @@ app.engine("jsx", require("express-react-views").createEngine());
 
 // Routes
 app.use("/breads", breadRoutes);
+app.use("/bakers", bakerRoutes);
 
 // db connection
 mongoose.set("strictQuery", true);
