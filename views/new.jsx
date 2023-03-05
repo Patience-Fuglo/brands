@@ -1,20 +1,23 @@
 const React = require("react");
+const bread = require("../models/bread");
 const Default = require("./layouts/default");
 
-function New({ bakers }) {
+const New = ({ bakers }) => {
   return (
     <Default>
       <h2>Add a new bread</h2>
-      <div className="backButton">
-        <a href="/breads">
-          <button>Go back to the index</button>
-        </a>
-      </div>
       <form action="/breads" method="POST">
         <label htmlFor="name">Name</label>
         <input type="text" name="name" id="name" required />
-        <label htmlFor="image">Image</label>
-        <input type="text" name="image" id="image" />
+        <label htmlFor="hasGluten">Has Gluten?</label>
+        <input
+          type="checkbox"
+          name="hasGluten"
+          id="hasGluten"
+          defaultChecked={bread.hasGluten}
+        />
+        <br />
+        <input type="submit" />
         <label htmlFor="baker">Baker</label>
         <select name="baker" id="baker">
           {bakers.map((baker) => {
@@ -25,13 +28,14 @@ function New({ bakers }) {
             );
           })}
         </select>
-        <label htmlFor="hasGluten">Has Gluten?</label>
-        <input type="checkbox" name="hasGluten" id="hasGluten" defaultChecked />
-        <br />
-        <input type="submit" />
       </form>
+      <div className="backButton">
+        <a href="/breads">
+          <button>Go back to the index</button>
+        </a>
+      </div>
     </Default>
   );
-}
+};
 
 module.exports = New;
